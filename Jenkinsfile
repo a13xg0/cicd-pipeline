@@ -21,7 +21,7 @@ pipeline {
 
     stage('Docker image build') {
       steps {
-        sh 'docker build -t gorbach_cicd:$BUILD_NUMBER .'
+        sh 'docker build -t a13xg0/gorbach_cicd:$BUILD_NUMBER .'
       }
     }
 
@@ -30,7 +30,7 @@ pipeline {
         script {
           docker.withRegistry('', 'dockerhub-cicd')
           {
-            docker.image("gorbach_cicd:$env.BUILD_NUMBER").push("latest")
+            docker.image("a13xg0/gorbach_cicd:$env.BUILD_NUMBER").push("latest")
           }
         }
 
