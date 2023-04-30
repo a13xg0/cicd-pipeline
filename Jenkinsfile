@@ -27,10 +27,12 @@ pipeline {
     
     stage('Docker image deploy') {
       steps {
-        docker.withRegistry('https://registry.hub.docker.com', 'dockerhub-cicd')
-        {
-          app.push("$env.BUILD_NUMBER")
-          app.push("latest")
+        script{
+          docker.withRegistry('https://registry.hub.docker.com', 'dockerhub-cicd')
+          {
+            app.push("$env.BUILD_NUMBER")
+            app.push("latest")
+          }
         }
       }
     }
