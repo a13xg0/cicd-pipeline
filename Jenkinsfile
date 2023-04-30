@@ -28,9 +28,9 @@ pipeline {
     stage('Docker image deploy') {
       steps {
         script {
-          docker.withRegistry('https://registry.hub.docker.com', 'dockerhub-cicd')
+          docker.withRegistry('', 'dockerhub-cicd')
           {
-            docker.image("gorbach_cicd:$env.BUILD_NUMBER").push("latest")
+            docker.image("a13xg0/gorbach_cicd:$env.BUILD_NUMBER").push("latest")
           }
         }
 
