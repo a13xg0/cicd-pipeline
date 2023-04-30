@@ -24,6 +24,16 @@ pipeline {
         sh 'docker build -t gorbach_cicd .'
       }
     }
+    
+    stage('Docker image deploy') {
+      steps {
+        docker.withRegistry('https://registry.hub.docker.com', 'dockerhub-cicd')
+        {
+          app.push("$env.BUILD_NUMBER")
+          app.push("latest")
+        }
+      }
+    }
 
   }
 }
