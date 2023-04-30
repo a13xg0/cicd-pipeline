@@ -30,8 +30,7 @@ pipeline {
         script{
           docker.withRegistry('https://registry.hub.docker.com', 'dockerhub-cicd')
           {
-            app.push("$env.BUILD_NUMBER")
-            app.push("latest")
+           docker.image("gorbach_cicd:$env.BUILD_NUMBER").push("latest")
           }
         }
       }
