@@ -21,18 +21,19 @@ pipeline {
 
     stage('Docker image build') {
       steps {
-        sh 'docker build -t gorbach_cicd .'
+        sh 'docker build -t gorbach_cicd:$env.BUILD_NUMBER .'
       }
     }
-    
+
     stage('Docker image deploy') {
       steps {
-        script{
+        script {
           docker.withRegistry('https://registry.hub.docker.com', 'dockerhub-cicd')
           {
-           docker.image("gorbach_cicd:$env.BUILD_NUMBER").push("latest")
+            docker.image("gorbach_cicd:$env.BUILD_NUMBER").push("latest")
           }
         }
+
       }
     }
 
