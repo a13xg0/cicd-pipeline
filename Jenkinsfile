@@ -13,5 +13,11 @@ pipeline {
       }
     }
 
+    stage('Application Test') {
+      steps {
+        sh 'scripts/test.sh'
+      }
+    }
+
   }
 }
