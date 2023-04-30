@@ -21,7 +21,7 @@ pipeline {
 
     stage('Docker image build') {
       steps {
-        sh 'docker build -t gorbach_cicd'
+        sh 'docker build -t gorbach_cicd .'
       }
     }
 
